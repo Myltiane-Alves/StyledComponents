@@ -1,4 +1,5 @@
 import React from 'react';
+import { Feather } from '@expo/vector-icons'
 import {
     Container, 
     Header,
@@ -8,7 +9,7 @@ import {
     User,
     UserGreeting, 
     UserName,
-
+    Icon,
 
 } from './styles';
 
@@ -24,6 +25,7 @@ export function Dashboard() {
                         <UserName>Myltiane</UserName>    
                     </User>
                 </UserInfo>
+                <Icon name="power" />
               </UserWrapper>
           </Header>
         </Container>
