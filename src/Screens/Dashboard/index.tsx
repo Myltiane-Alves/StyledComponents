@@ -12,6 +12,7 @@ import {
     Icon,
 
 } from './styles';
+import { HighlightCard } from '../../components/HighlightCard';
 
 export function Dashboard() {
     return (
@@ -28,6 +29,8 @@ export function Dashboard() {
                 <Icon name="power" />
               </UserWrapper>
           </Header>
+
+          <HighlightCard />
         </Container>
     )
 }
