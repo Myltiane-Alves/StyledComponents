@@ -44,7 +44,9 @@ export function Register() {
     const {
         control,
         handleSubmit
-    } = useForm();
+    } = useForm({
+        resolver: yupResolver()
+    });
 
     function  handleTransactionsTypeSelect(type: 'up' | 'down') {
         setTransactionType(type);
