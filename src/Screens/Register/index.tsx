@@ -31,6 +31,17 @@ interface FormData {
     amount: string;
 }
 
+const schema = Yup.object().shape({
+    name: Yup
+    .string()
+    .required('Nome é obrigatório'),
+    amount: Yup
+    .number()
+    .typeError('Informe um valor númerico')
+    .positive('O valor não pode ser negativo')
+    .required('O valor é obrigatório')
+});
+
 export function Register() {
     const [transactionType, setTransactionType] = useState('');
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -43,9 +54,10 @@ export function Register() {
 
     const {
         control,
-        handleSubmit
+        handleSubmit,
+        formState: { errors }
     } = useForm({
-        resolver: yupResolver()
+        resolver: yupResolver(schema)
     });
 
     function  handleTransactionsTypeSelect(type: 'up' | 'down') {
@@ -91,12 +103,14 @@ export function Register() {
                             placeholder="Nome"
                             autoCapitalize="sentences"
                             autoCorrect={false}
+                            error={errors.name && errors.name.message}
                         />
                         <InputForm
                             name="amount"
                             control={control}
                             placeholder="Preço"
                             keyboardType="numeric"
+                            error={errors.amount && errors.amount.message}
                         />
                         <TransactionsTypes>
                             <TransactionTypeButton
