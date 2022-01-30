@@ -1,8 +1,9 @@
-import React from "React";
+import React from "react";
 import { RectButtonProps } from 'react-native-gesture-handler'
 
 import { 
     Container,
+    Button,
     Icon,
     Title 
 } from "./styles";
@@ -28,7 +29,6 @@ export function TransactionTypeButton({
         <Container 
             isActive={isActive}
             type={type}
-            {...rest}
         >
             <Button
                 {...rest}

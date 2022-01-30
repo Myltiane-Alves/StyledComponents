@@ -14,6 +14,12 @@ import theme from './src/Global/Styles/theme';
 import { NavigationContainer } from '@react-navigation/native';
 import { AppRoutes } from './src/routes/app.routes';
 
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
+]);
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -24,6 +30,7 @@ export default function App() {
   if(!fontsLoaded) {
     return <AppLoading />
   }
+
 
   return (
     <ThemeProvider  theme={theme}>

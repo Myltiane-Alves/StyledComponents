@@ -26,9 +26,9 @@ import {
     TransactionsTypes,
 }  from './styles';
 
-interface FormData {
-    name: string;
-    amount: string;
+export type FormData = {
+    [name: string]: any;
+    //amount: string;
 }
 
 const schema = Yup.object().shape({
@@ -136,7 +136,7 @@ export function Register() {
                     </Fields>
                     <Button 
                         title="Enviar"
-                        onPress={handleSubmit(handleRegister)}    
+                        onPress={() => handleSubmit(handleRegister)}    
                     />
                 </Form>
 
