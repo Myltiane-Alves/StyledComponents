@@ -46,7 +46,7 @@ export const Icon = styled(Feather)`
 
 export const CategoryName = styled.Text`
   font-size: ${RFValue(14)}px;
- // font-family: ${({ theme }) => theme.fonts.regular};
+ font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors.text};
   margin-left: 17px;
 `;

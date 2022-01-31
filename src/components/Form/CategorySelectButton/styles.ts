@@ -3,12 +3,10 @@ import { RectButton } from 'react-native-gesture-handler'
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from "react-native-responsive-fontsize";
 
-export const Container = styled(RectButton).attrs({
-    activeOpacity: 0.7
-})`
+export const Container = styled(RectButton)`
     background-color: ${({ theme }) => theme.colors.shape};
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     border-radius: 5px;
@@ -18,7 +16,8 @@ export const Container = styled(RectButton).attrs({
 export const Category = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
-    
+    color: ${({ theme }) => theme.colors.text};
+
 `;
 
 export const Icon = styled(Feather)`

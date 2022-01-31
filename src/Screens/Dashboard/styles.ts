@@ -79,7 +79,7 @@ export const HighlightCards = styled.ScrollView.attrs({
     width: 100%;
 
     position: absolute;
-    margin-top: ${RFPercentage(32)}px;
+    margin-top: ${RFPercentage(20)}px;
 `;
 
 export const  Transactions = styled.View`

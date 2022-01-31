@@ -29,6 +29,8 @@ interface Props {
 }
 
 export function TransactionCard({ data }: Props) {
+    
+
     return (
         <Container>
             <Title>{data.title}</Title>

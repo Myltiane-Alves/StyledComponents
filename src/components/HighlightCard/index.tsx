@@ -11,10 +11,10 @@ import {
 } from './styles';
 
 interface Props {
-    type: 'up' | 'down' | 'total';
     title: string;
     amount: string;
     lastTransaction: string;
+    type: 'up' | 'down' | 'total';
 }
 
 const icon = {
@@ -24,10 +24,10 @@ const icon = {
 }
 
 export function HighlightCard({
-    type,
     title,
     amount,
-    lastTransaction
+    lastTransaction,
+    type,
 }: Props) {
     return (
         <Container type={type}>
