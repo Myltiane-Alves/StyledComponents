@@ -24,6 +24,7 @@ import { HighlightCard } from '../../components/HighlightCard';
 import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
 import { useTheme } from 'styled-components';
 import theme from '../../Global/Styles/theme';
+import { date } from 'yup/lib/locale';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -51,6 +52,21 @@ export function Dashboard() {
 
     const theme = useTheme();
 
+    function getLastTransactionDate() {
+      const lastTransactionEntries =
+      Math.max.apply(Math, transactions
+      .filter((transaction: DataListProps) => transaction.type === 'positive')
+      .map((transaction: DataListProps) => new Date(transaction.date).getTime()));
+
+      const lastTransactionEntriesFormatted = Intl.DateTimeFormat('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: '2-digit',
+      }).format(new Date(lastTransactionEntries));
+
+      console.log(lastTransactionEntries);
+    }
+    
     let entriesTotal = 0;
     let expensiveTotal = 0;
 
