@@ -34,11 +34,13 @@ interface HighlightProps {
 interface HighlightData {
   entries: HighlightProps;
   expensives: HighlightProps;
+  total: HighlightProps;
 }
 
 export function Dashboard() {
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
+
   async function loadTransactions() {
     const dataKey = '@gofinances:trasactions';
     const response = await AsyncStorage.getItem(dataKey);
@@ -80,7 +82,31 @@ export function Dashboard() {
 
     });
     
+
     setTransactions(transactionsFormatted);
+
+    const total = entriesTotal - expensiveTotal;
+
+    setHighlightData({
+      entries: {
+        amount: entriesTotal.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        })
+      },
+      expensives: {
+        amount: expensiveTotal.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        })
+      },
+      total: {
+        amount: total.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        })
+      }
+    });
   }
 
   useEffect(() => {
@@ -113,19 +139,19 @@ export function Dashboard() {
         <HighlightCard
           type="up"
           title="Entradas"
-          amount="R$ 17.400,00"
+          amount={highlightData.entries.amount}
           lastTransaction="última entrada dia 13 de abril"
         />
         <HighlightCard
           type="down"
           title="Saídas"
-          amount="R$ 1.259,00"
+          amount={highlightData.expensives.amount}
           lastTransaction="última saída dia 03 de abril"
         />
         <HighlightCard
           type="total"
           title="Total"
-          amount="R$ 16.141,00"
+          amount={highlightData.total.amount}
           lastTransaction="01 á 16 de abril"
         />
       </HighlightCards>
