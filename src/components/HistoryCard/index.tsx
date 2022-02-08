@@ -12,7 +12,7 @@ interface Props {
     amount: string;
     color: string;
 }
-export function Resume({
+export function HistoryCard({
     title,
     amount,
     color
