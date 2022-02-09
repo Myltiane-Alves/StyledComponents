@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { HistoryCard } from "../../components/HistoryCard";
 import { addMonths, subMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-//import { VictoryPie } from 'victory-native'
+import { VictoryPie } from 'victory-native'
 import { useFocusEffect } from '@react-navigation/native'; 
 import { RFValue } from "react-native-responsive-fontsize";
 
