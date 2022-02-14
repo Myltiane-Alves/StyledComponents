@@ -20,11 +20,15 @@ import {
   LoadContainer,
   
 } from './styles';
+
 import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
+import { 
+  TransactionCard,
+  TransactionCardProps
+} from '../../components/TransactionCard';
 import { useTheme } from 'styled-components';
 import theme from '../../Global/Styles/theme';
-import { date } from 'yup/lib/locale';
+
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -43,7 +47,9 @@ interface HighlightData {
 
 export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
-  const [transactions, setTransactions] = useState<DataListProps[]>([]);
+  const [data, setData] = useState<DataListProps[]>([]);
+
+  //const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
 
   async function loadTransactions() {
@@ -84,7 +90,6 @@ export function Dashboard() {
         currency: 'BRL'
       });
 
-      
       const date = Intl.DateTimeFormat('pt-BR', {
         day: '2-digit',
         month: '2-digit',
@@ -97,19 +102,20 @@ export function Dashboard() {
         amount,
         type: item.type,
         category: item.category,
-        date,
+        date
       }
 
-    });
+    }
+  );
     
 
-    setTransactions(transactionsFormatted);
+  setData(transactionsFormatted);
 
-    const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
-    const lastTransactionExpensives = getLastTransactionDate(transactions, 'negative');
-    const totalInterval = `01 a ${lastTransactionExpensives}`;
+  const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
+  const lastTransactionExpensives = getLastTransactionDate(transactions, 'negative');
+  const totalInterval = `01 a ${lastTransactionExpensives}`;
 
-    const total = entriesTotal - expensiveTotal;
+  const total = entriesTotal - expensiveTotal;
 
     setHighlightData({
       entries: {
@@ -199,9 +205,9 @@ export function Dashboard() {
             <Title>Listagem</Title>
 
             <TransactionList
-              data={transactions}
-              keyExtractor={item => item.id}
+              data={data}
               renderItem={({ item }) => <TransactionCard data={item} />}
+              keyExtractor={item => item.id}
         
             />
             

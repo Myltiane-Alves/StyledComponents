@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import 'intl';
-//import 'intl/locale-data/jsonp/pt-BR';
+import 'intl/locale-data/jsonp/pt-BR';
 
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
@@ -17,6 +17,7 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <ThemeProvider  theme={theme}>
       <NavigationContainer>
+       <StatusBar barStyle="light-content"/> 
        <AppRoutes />
       </NavigationContainer>
     </ThemeProvider>

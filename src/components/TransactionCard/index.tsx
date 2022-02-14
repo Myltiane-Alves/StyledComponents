@@ -12,8 +12,6 @@ import {
     Date,
 } from './styles';
 
-
-
 export interface TransactionCardProps {
     type: 'positive' | 'negative';
     name: string;
@@ -27,7 +25,7 @@ interface Props {
 }
 
 export function TransactionCard({ data }: Props) {
-    const [category] = categories.filter(
+    const category = categories.find(
         item => item.key === data.category
     );
 
@@ -42,9 +40,10 @@ export function TransactionCard({ data }: Props) {
 
             <Footer>
                 <Category>
-                    <Icon name={category.icon} />
-                    <CategoryName>{category.name}</CategoryName>
+                    <Icon name={category?.icon} />
+                    <CategoryName>{category?.name}</CategoryName>
                 </Category>
+                
                 <Date>{data.date}</Date>
             </Footer>
         </Container>
