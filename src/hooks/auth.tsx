@@ -93,7 +93,7 @@ function AuthProvider({ children }: AuthProviderProps) {
                 const userLogged = {
                     id: String(credential.user),
                     email: credential.email!,
-                    name,
+                    name: credential.fullName!.givenName!,
                     photo
                 };
 
