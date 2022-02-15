@@ -3,6 +3,11 @@ import React, { createContext, ReactNode, useContext, useState } from "react";
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
 
+//import *  as Google from 'expo-google-app-auth';
+import * as AppleAuthentication from 'expo-apple-authentication';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import * as AuthSession from 'expo-auth-session';
 
 interface AuthProviderProps {
@@ -60,6 +65,24 @@ function AuthProvider({ children }: AuthProviderProps) {
             }
         } catch(error) {
             throw new Error(error);
+        }
+    }
+
+    async function signInWithApple() {
+        try {
+            const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ]
+            });
+
+            if(credential) {
+
+            }
+            
+        } catch (error) {
+
         }
     }
     return (
