@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import GoogleSvg from '../../assets/logo.svg';
 import AppleSvg from '../../assets/logo.svg';
 import LogoSvg from '../../assets/logo.svg';
+import { AuthContext } from '../../AuthContext';
 
 import { SignInSocialButton } from '../../components/SignInSocialButton';
 
@@ -17,6 +18,8 @@ import {
     FooterWrapper,
 } from './styles';
 export function SignIn() {
+    const data = useContext(AuthContext);
+    
     return (
         <Container>
             <Header>

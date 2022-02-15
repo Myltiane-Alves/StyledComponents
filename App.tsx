@@ -18,6 +18,7 @@ import {
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 import { StatusBar } from 'expo-status-bar';
+import { AuthContext } from './src/AuthContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -35,7 +36,9 @@ export default function App() {
     <ThemeProvider  theme={theme}>
       <NavigationContainer>
        <StatusBar barStyle="light-content"/> 
-       <AppRoutes />
+       <AuthContext.Provider value={[]} >
+         <AppRoutes />
+       </AuthContext.Provider>
       </NavigationContainer>
     </ThemeProvider>
   );
