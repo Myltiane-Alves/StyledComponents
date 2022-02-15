@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
@@ -25,6 +25,8 @@ interface IAuthContextData {
     user: User;
     signInWithGoogle(): Promise<void>;
     signInWithApple(): Promise<void>;
+    signOut: () => Promise<void>;
+    userStorageLoading: boolean;
 }
 
 interface AuthorizationResponse {
@@ -103,11 +105,33 @@ function AuthProvider({ children }: AuthProviderProps) {
             throw new Error(String(err))
         }
     }
+
+    async function signOut() {
+        setUser({} as User);
+        await AsyncStorage.removeItem(userStorageKey);
+    }
+
+    useEffect(() => {
+        async function loadUserStorageData(){
+            const userStoraged = await AsyncStorage.getItem(userStorageKey);
+            if(userStoraged) {
+                const userLogged = JSON.parse(userStoraged) as User;
+                setUser(userLogged);
+            }
+
+            setUserStorageLoading(false);
+        }
+
+        loadUserStorageData();
+    }, []);
+
     return (
         <AuthContext.Provider value={{
             user,
             signInWithGoogle,
-            signInWithApple
+            signInWithApple,
+            signOut,
+            userStorageLoading
         }}>
             {children}
         </AuthContext.Provider>
@@ -119,4 +143,4 @@ function useAuth() {
     return context;
 }
 
-export { AuthContext, useAuth }
+export { AuthProvider, useAuth }
