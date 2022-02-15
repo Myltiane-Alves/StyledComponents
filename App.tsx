@@ -8,7 +8,7 @@ import AppLoading from 'expo-app-loading';
 
 import theme from './src/Global/Styles/theme';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes/index';
 import { AppRoutes } from './src/routes/app.routes';
 
 import {
@@ -34,15 +34,11 @@ export default function App() {
 
 
   return (
-    <ThemeProvider  theme={theme}>
-      <NavigationContainer>
+    <ThemeProvider  theme={theme}>   
        <StatusBar barStyle="light-content"/> 
-
        <AuthProvider >
-         <AppRoutes />
+         <Routes />
        </AuthProvider>
-       
-      </NavigationContainer>
     </ThemeProvider>
   );
 }
